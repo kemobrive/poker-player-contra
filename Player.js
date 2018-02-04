@@ -4,9 +4,9 @@ class Player {
   }
 
   static betRequest(gameState, bet) {
-    console.log(gameState);
+    var bet = gameState.big_blind * 2;
 
-    bet(gameState.big_blind * 2);
+    bet(bet);
   }
 
   static showdown(gameState) {
