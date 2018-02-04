@@ -11,6 +11,7 @@ class Player {
     var handQuality = getHandQuality(ourBot.hole_cards);
 
     currentBet = ourBot.stack;
+    console.log('OUR BET STACK !!!!!!',ourBot.stack);
 
     bet(currentBet);
   }
