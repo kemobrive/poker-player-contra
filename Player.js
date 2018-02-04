@@ -1,6 +1,6 @@
 class Player {
   static get VERSION() {
-    return '2.0.2';
+    return '2.0.3';
   }
 
   static betRequest(gameState, bet) {
@@ -19,7 +19,7 @@ class Player {
 
 
     console.log('!!!gameState:', gameState);
-    // getApi();
+    getApi();
     // If M is good
     // if (currentM > 9) {
     //   // No actions before us
@@ -70,7 +70,8 @@ class Player {
   // Custom methods
 }
 
-// function getApi() {
+function getApi() {
+  console.log(http);
 //   if (!fetch) return;
 //
 //   // fetch('http://rainman.leanpoker.org/rank',{
@@ -79,7 +80,7 @@ class Player {
 //   // })
 //   //   .then(res => res.json())
 //   //   .then(json => console.log('!!!JSON:',json));
-// }
+}
 
 function calcM(gameState, player) {
   var stack = parseInt(player.stack);
