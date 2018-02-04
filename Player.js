@@ -5,6 +5,8 @@ class Player {
 
   static betRequest(gameState, bet) {
     var bet = gameState.big_blind * 2;
+    var ourBot = getOurPlayer(gameState);
+
 
     bet(bet);
   }
@@ -16,6 +18,11 @@ class Player {
   /**
    *
    */
+
+  static getOurPlayer(gameState) {
+
+  }
+
   static getHandQuality(hand) {
     var quality = 0;
 
