@@ -7,7 +7,7 @@ class Player {
     var currentBet = gameState.big_blind * 2;
     var ourBot = getOurPlayer(gameState);
     var handQuality = getHandQuality(ourBot.hole_cards);
-    console.log('HAND QUALITY: ',handQuality);
+    // console.log('HAND QUALITY: ' + handQuality);
     var playersInGame = getPlayersLength(gameState.players);
     if (handQuality >= 61){
       currentBet = ourBot.stack;
@@ -15,7 +15,9 @@ class Player {
       return;
     }
 
-    if (handQuality > 48 && (calcM(gameState, ourBot) <= 9)){
+    console.log('!!!gameState:', gameState);
+
+    if (handQuality >= 48 && (calcM(gameState, ourBot) < 9)) {
       currentBet = ourBot.stack;
       bet(currentBet);
       return;
@@ -45,6 +47,10 @@ class Player {
   static showdown(gameState) {
   }
   // Custom methods
+}
+
+function getPreviousActions(gameState) {
+
 }
 
 function calcM(gameState, player) {
