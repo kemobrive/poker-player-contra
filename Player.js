@@ -1,8 +1,8 @@
-const https = require('https');
+import fetch from 'node-fetch';
 
 class Player {
   static get VERSION() {
-    return '2.0.1';
+    return '2.0.2';
   }
 
   static betRequest(gameState, bet) {
@@ -73,11 +73,14 @@ class Player {
 }
 
 function getApi() {
-  // if (!https) return;
-  //
-  // https.get('http://rainman.leanpoker.org/rank', (resp) => {
-  //   console.log('RESPONSE: ', resp);
-  // })
+  if (!fetch) return;
+
+  fetch('http://rainman.leanpoker.org/rank',{
+    method: 'GET',
+    body: {}
+  })
+    .then(res => res.json())
+    .then(json => console.log(json));
 }
 
 function calcM(gameState, player) {

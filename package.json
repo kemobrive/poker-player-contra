@@ -8,6 +8,7 @@
   "private": true,
   "dependencies": {
     "express": "4.x",
+    "node-fetch": "2.0.0",
     "body-parser": "1.15.2"
   }
 }
