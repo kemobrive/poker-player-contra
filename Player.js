@@ -6,7 +6,7 @@ class Player {
   static betRequest(gameState, bet) {
     var bet = gameState.big_blind * 2;
     var ourBot = getOurPlayer(gameState);
-
+    console.log(ourBot);
 
     bet(bet);
   }
@@ -20,7 +20,16 @@ class Player {
    */
 
   static getOurPlayer(gameState) {
+    var players = gameState.players;
+    var we = null;
 
+    players.forEach(players, function (player) {
+      if (player.name == 'Contra') {
+        we = player;
+      }
+    });
+
+    return we;
   }
 
   static getHandQuality(hand) {
