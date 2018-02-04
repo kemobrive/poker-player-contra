@@ -17,7 +17,7 @@ class Player {
 
 
     console.log('!!!gameState:', gameState);
-    getApi();
+    // getApi();
     // If M is good
     //Pre flop or post flop
     if (gameState.community_cards.length == 0) {
