@@ -1,6 +1,6 @@
 class Player {
   static get VERSION() {
-    return '0.1.6.1';
+    return '2.0.0';
   }
 
   static betRequest(gameState, bet) {
@@ -25,6 +25,12 @@ class Player {
       if (gameState.current_buy_in == gameState.big_blind) {
         bet(gameState.big_blind * 2);
         return;
+      } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
+        var bet1 = gameState.current_buy_in + minimum_raise;
+        if (bet1 < (0.2 * ourBot.stack)) {
+          bet(bet1);
+          return;
+        }
       }
     }
 
