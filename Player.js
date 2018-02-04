@@ -1,10 +1,6 @@
 class Player {
   static get VERSION() {
-<<<<<<< HEAD
-    return '4.1.6';
-=======
-    return '4.0.6';
->>>>>>> f943d988a58fd8f3bf294208a651e42c5dc9f6ad
+    return '5.0.0';
   }
 
   static betRequest(gameState, bet) {
@@ -38,23 +34,23 @@ class Player {
     // PRE FLOP
     if (!isPostFlop) {
       // nice hand and a lot of money
-      // if (handQuality >= 48 && (currentM > 9)) {
-      //   if (gameState.current_buy_in == gameState.big_blind) {
-      //     currentBet = gameState.big_blind * 3;
-      //     bet(currentBet);
-      //     return;
-      //   } else if (gameState.current_buy_in > gameState.big_blind) {
-      //     currentBet = gameState.current_buy_in + (gameState.minimum_raise * 4);
-      //     if (currentBet > (0.3 * ourBot.stack)) {
-      //       bet(ourBot.stack);
-      //       return;
-      //     } else {
-      //       bet(currentBet);
-      //       return;
-      //     }
-      //   }
-      //
-      // }
+      if (handQuality >= 48 && (currentM > 9)) {
+        if (gameState.current_buy_in == gameState.big_blind) {
+          currentBet = gameState.big_blind * 3;
+          bet(currentBet);
+          return;
+        } else if (gameState.current_buy_in > gameState.big_blind) {
+          currentBet = gameState.current_buy_in + (gameState.minimum_raise * 4);
+          if (currentBet > (0.3 * ourBot.stack)) {
+            bet(ourBot.stack);
+            return;
+          } else {
+            bet(currentBet);
+            return;
+          }
+        }
+
+      }
 
       // nice hand and a small amount of money
       if (handQuality >= 48 && (currentM < 9)) {
@@ -81,6 +77,20 @@ class Player {
       }
     } else {
       // POST FLOP
+      var hasPair = getSameCard(gameState.community_cards, ourBot.hole_cards);
+      if (hasPair) {
+        // if (gameState.current_buy_in == gameState.big_blind) {
+          if ((gameState.pot / 2) > (0.3 * ourBot.stack)) {
+            bet(ourBot.stack);
+            return;
+          } else {
+            bet(gameState.pot / 2);
+            return;
+          }
+        // } else {
+
+        // }
+      }
 
     }
 
@@ -93,8 +103,17 @@ class Player {
   // Custom methods
 }
 
-function getPreviousActions(gameState) {
+function getSameCard(comunityCards, ourCards) {
+  var hasPair = false;
 
+  ourCards.forEach(function (ourCard) {
+    var card = ourCard.rank;
+    if (!hasPair) {
+      hasPair = comunityCards.some(k => k.rank == ourCard);
+    }
+  });
+
+  return hasPair;
 }
 
 function calcM(gameState, player) {
