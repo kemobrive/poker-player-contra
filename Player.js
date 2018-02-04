@@ -2,7 +2,7 @@ class Player {
 
 
   static get VERSION() {
-    return '0.1.3';
+    return '0.1.4';
   }
 
   static betRequest(gameState, bet) {
@@ -65,8 +65,13 @@ function getHandQuality(hand) {
 
   var firstHand = getCardQuality(hand[0]);
   var lastHand = getCardQuality(hand[1]);
+  var maxCard = (firstHand > lastHand) ? 0 : 1;
 
   quality = firstHand + lastHand;
+
+  if (quality > 24) {
+    return 100;
+  }
 
   return quality;
 }
