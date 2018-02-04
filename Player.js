@@ -80,7 +80,7 @@ function getApi() {
     body: {}
   })
     .then(res => res.json())
-    .then(json => console.log(json));
+    .then(json => console.log('!!!JSON:',json));
 }
 
 function calcM(gameState, player) {
