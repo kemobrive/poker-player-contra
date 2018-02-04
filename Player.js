@@ -6,7 +6,7 @@ class Player {
   static betRequest(gameState, bet) {
     console.log(gameState);
 
-    bet(0);
+    bet(gameState.big_blind * 2);
   }
 
   static showdown(gameState) {
