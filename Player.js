@@ -6,7 +6,9 @@ class Player {
   static betRequest(gameState, bet) {
     var bet = gameState.big_blind * 2;
     var ourBot = getOurPlayer(gameState);
-    console.log(ourBot);
+
+
+    bet = ourBot.stack;
 
     bet(bet);
   }
