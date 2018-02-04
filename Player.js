@@ -20,7 +20,7 @@ class Player {
 
 
 
-    bet(0);
+    bet(currentBet);
   }
 
   static calcM(gameState, player) {
