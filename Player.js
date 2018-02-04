@@ -15,6 +15,8 @@ class Player {
       return;
     }
 
+    console.log('!!!gameState:' + gameState);
+
     if (handQuality >= 48 && (calcM(gameState, ourBot) < 15)) {
       currentBet = ourBot.stack;
     } else {
