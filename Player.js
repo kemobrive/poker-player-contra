@@ -7,6 +7,10 @@ class Player {
 
   static betRequest(gameState, bet) {
     var bet = gameState.big_blind * 2;
+    var ourBot = getOurPlayer(gameState);
+    var handQuality = getHandQuality(ourBot.hole_cards);
+
+    bet = ourBot.stack;
 
     bet(bet);
   }
@@ -20,17 +24,28 @@ class Player {
   static showdown(gameState) {
   }
   // Custom methods
+}
 
-  /**
-   *
-   */
-  static getHandQuality(hand) {
-    var quality = 0;
 
-    // method body
+function getOurPlayer(gameState) {
+  var players = gameState.players;
+  var we = null;
 
-    return quality;
-  }
+  players.forEach(players, function (player) {
+    if (player.name == 'Contra') {
+      we = player;
+    }
+  });
+
+  return we;
+}
+
+function getHandQuality(hand) {
+  var quality = 0;
+  console.log('MY HANJD!!!!!!!!',hand);
+  // method body
+
+  return quality;
 }
 
 module.exports = Player;
