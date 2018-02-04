@@ -9,7 +9,7 @@ class Player {
     var currentBet = gameState.big_blind * 2;
     var ourBot = getOurPlayer(gameState);
     var handQuality = getHandQuality(ourBot.hole_cards);
-
+    console.log(handQuality);
     var playersInGame = getPlayersLength(gameState.players);
 
     if (playersInGame !== 2) {
@@ -62,10 +62,26 @@ function getOurPlayer(gameState) {
 
 function getHandQuality(hand) {
   var quality = 0;
-  console.log('MY HANJD!!!!!!!!',hand);
-  // method body
+
+  var firstHand = getCardQuality(hand[0]);
+  var lastHand = getCardQuality(hand[1]);
+
+  quality = firstHand + lastHand;
 
   return quality;
+}
+
+function getCardQuality(card) {
+  var qualityMap = {
+    'J': 11,
+    'Q': 12,
+    'K': 13,
+    'A': 15,
+  };
+
+  var quality = qualityMap[card.rank] ? qualityMap[card.rank] : card.rank;
+
+  return parseInt(quality);
 }
 
 module.exports = Player;
