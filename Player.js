@@ -1,11 +1,25 @@
 class Player {
   static get VERSION() {
+<<<<<<< HEAD
     return '4.1.6';
+=======
+    return '4.0.6';
+>>>>>>> f943d988a58fd8f3bf294208a651e42c5dc9f6ad
   }
 
   static betRequest(gameState, bet) {
     var currentBet = gameState.big_blind * 2;
     var ourBot = getOurPlayer(gameState);
+
+    // var rankResp = new XMLHttpRequest();
+    // rankResp.open("GET", "http://rainman.leanpoker.org/rank?cards=" + JSON.stringify(ourBot.hole_cards), true);
+    // rankResp.onload = function (){
+    //   console.log("THIS IS API RANKING" + rankResp.responseText);
+    // }
+    //
+    // rankResp.send(null);
+    // console.log("Sended");
+
     var handQuality = getHandQuality(ourBot.hole_cards);
     // console.log('HAND QUALITY: ' + handQuality);
     var playersInGame = getPlayersLength(gameState.players);
