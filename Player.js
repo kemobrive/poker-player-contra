@@ -10,8 +10,15 @@ class Player {
     var ourBot = getOurPlayer(gameState);
     var handQuality = getHandQuality(ourBot.hole_cards);
 
-    currentBet = ourBot.stack;
-    console.log('OUR BET STACK !!!!!!',ourBot.stack);
+    var playersInGame = getPlayersLength(gameState.players);
+
+    if (playersInGame !== 2) {
+      currentBet = 0;
+    } else {
+      currentBet = ourBot.stack;
+    }
+
+
 
     bet(currentBet);
   }
@@ -25,6 +32,18 @@ class Player {
   static showdown(gameState) {
   }
   // Custom methods
+}
+
+function getPlayersLength(players) {
+  var len = 0;
+  players.forEach(function (player) {
+    if (player.status == 'active') {
+      len++;
+    }
+  });
+
+  return len;
+
 }
 
 
