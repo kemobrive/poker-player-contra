@@ -15,7 +15,7 @@ class Player {
       return;
     }
 
-    console.log('!!!gameState:' + gameState);
+    console.log('!!!gameState:', gameState);
 
     if (handQuality >= 48 && (calcM(gameState, ourBot) < 15)) {
       currentBet = ourBot.stack;
@@ -35,6 +35,10 @@ class Player {
   static showdown(gameState) {
   }
   // Custom methods
+}
+
+function getPreviousActions(gameState) {
+
 }
 
 function calcM(gameState, player) {
