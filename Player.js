@@ -6,7 +6,7 @@ class Player {
   static betRequest(gameState, bet) {
     var bet = gameState.big_blind * 2;
     var ourBot = getOurPlayer(gameState);
-
+    var handQuality = getHandQuality(ourBot.hole_cards);
 
     bet = ourBot.stack;
 
@@ -36,7 +36,7 @@ class Player {
 
   static getHandQuality(hand) {
     var quality = 0;
-
+    console.log('MY HANJD!!!!!!!!',hand);
     // method body
 
     return quality;
