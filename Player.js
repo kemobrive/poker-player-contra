@@ -18,7 +18,7 @@ class Player {
     }
 
 
-    if (handQuality >= 17 && calcM(gameState, ourBot)<200) {
+    if (handQuality >= 17 && calcM(gameState, ourBot) < 200) {
       currentBet = ourBot.stack;
     } else {
       currentBet = 0;
@@ -27,16 +27,17 @@ class Player {
     bet(currentBet);
   }
 
-  static calcM(gameState, player) {
-    var stack = player.stack;
-
-    return stack / (1.5 * gameState.big_blind);
-  }
-
   static showdown(gameState) {
   }
   // Custom methods
 }
+
+function calcM(gameState, player) {
+  var stack = player.stack;
+
+  return stack / (1.5 * gameState.big_blind);
+}
+
 
 function getPlayersLength(players) {
   var len = 0;
