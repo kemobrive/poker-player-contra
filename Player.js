@@ -2,7 +2,7 @@ class Player {
 
 
   static get VERSION() {
-    return '0.1.1';
+    return '0.1.2';
   }
 
   static betRequest(gameState, bet) {
@@ -11,6 +11,7 @@ class Player {
     var handQuality = getHandQuality(ourBot.hole_cards);
 
     currentBet = ourBot.stack;
+    console.log('OUR BET STACK !!!!!!',ourBot.stack);
 
     bet(0);
   }
