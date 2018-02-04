@@ -1,7 +1,7 @@
 class Player {
   static get VERSION() {
 
-    return '3.2';
+    return '3.3.';
 
   }
 
@@ -21,7 +21,7 @@ class Player {
     // If M is good
     //Pre flop or post flop
     console.log('community_cards!QASEQ', gameState.community_cards);
-    // if (gameState.community_cards.length == 0) {
+    if (gameState.community_cards.length == 0) {
       if (currentM > 9) {
         // No actions before us
         if (gameState.current_buy_in == gameState.big_blind) {
@@ -32,7 +32,13 @@ class Player {
           if (bet1 < (0.2 * ourBot.stack)) {
             bet(bet1);
             return;
+          } else {
+            bet(0);
+            return;
           }
+        } else {
+          bet(0);
+          return;
         }
       }
       if (handQuality >= 61){
@@ -64,23 +70,25 @@ class Player {
         bet(currentBet);
         return;
       }
-
-
+      //
+      // bet(0);
+      // return;
       // currentBet = 0;
       // bet(currentBet);
-    // } else {
-    //   //POST FLOP bluff
-    //   if (gameState.current_buy_in == gameState.big_blind) {
-    //     bet(gameState.big_blind);
-    //     return;
-    //   } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
-    //     var bet1 = gameState.current_buy_in + minimum_raise;
-    //     if (bet1 < (0.2 * ourBot.stack)) {
-    //       bet(bet1);
-    //       return;
-    //     }
-    //   }
-    // }
+    }
+    else {
+      //POST FLOP bluff
+      if (gameState.current_buy_in == gameState.big_blind) {
+        bet(gameState.big_blind);
+        return;
+      } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
+        var bet1 = gameState.current_buy_in + minimum_raise;
+        if (bet1 < (0.2 * ourBot.stack)) {
+          bet(bet1);
+          return;
+        }
+      }
+    }
 
     currentBet = 0;
     bet(currentBet);
