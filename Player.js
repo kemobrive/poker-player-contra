@@ -35,10 +35,6 @@ class Player {
   // Custom methods
 }
 
-function getSmth() {
-
-}
-
 function calcM(gameState, player) {
   var stack = parseInt(player.stack);
 
