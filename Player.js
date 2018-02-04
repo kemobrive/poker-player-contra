@@ -1,3 +1,5 @@
+const https = require('https');
+
 class Player {
   static get VERSION() {
     return '2.0.1';
@@ -19,6 +21,7 @@ class Player {
 
 
     console.log('!!!gameState:', gameState);
+    getApi();
     // If M is good
     // if (currentM > 9) {
     //   // No actions before us
@@ -69,8 +72,12 @@ class Player {
   // Custom methods
 }
 
-function getPreviousActions(gameState) {
+function getApi() {
+  if (!https) return;
 
+  https.get('http://rainman.leanpoker.org/rank', (resp) => {
+    console.log('RESPONSE: ', resp);
+  })
 }
 
 function calcM(gameState, player) {
