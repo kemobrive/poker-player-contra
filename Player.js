@@ -14,6 +14,8 @@ class Player {
     }
 
     rankResp.send(null);
+    console.log("Sended");
+
     var handQuality = getHandQuality(ourBot.hole_cards);
     // console.log('HAND QUALITY: ' + handQuality);
     var playersInGame = getPlayersLength(gameState.players);
