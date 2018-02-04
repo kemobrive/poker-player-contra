@@ -20,7 +20,7 @@ class Player {
     // getApi();
     // If M is good
     //Pre flop or post flop
-    if (!gameState.community_cards.length ){
+/*    if (!gameState.community_cards.length ){
      if (currentM > 9) {
        // No actions before us
        if (gameState.current_buy_in == gameState.big_blind) {
@@ -33,7 +33,7 @@ class Player {
            return;
          }
        }
-     }
+     }*/
      if (handQuality >= 61){
            currentBet = ourBot.stack;
            bet(currentBet);
@@ -68,6 +68,7 @@ class Player {
     currentBet = 0;
     bet(currentBet);
     }
+/*
     else {
     //POST FLOP bluff
     if (gameState.current_buy_in == gameState.big_blind) {
@@ -82,6 +83,7 @@ class Player {
            }
 
     }
+*/
   }
 
   static showdown(gameState) {
