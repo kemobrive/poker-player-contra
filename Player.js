@@ -25,12 +25,22 @@ class Player {
       currentBet = 0;
     }
 
+    if (handQuality >= 45 && calcM(gameState, ourBot) < 3) {
+      currentBet = ourBot.stack;
+    } else {
+      currentBet = 0;
+    }
+
     bet(currentBet);
   }
 
   static showdown(gameState) {
   }
   // Custom methods
+}
+
+function () {
+
 }
 
 function calcM(gameState, player) {
