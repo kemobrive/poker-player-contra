@@ -5,10 +5,10 @@ class Player {
 
   static betRequest(gameState, bet) {
     var bet = gameState.big_blind * 2;
-    var ourBot = getOurPlayer(gameState);
-    var handQuality = getHandQuality(ourBot.hole_cards);
+    // var ourBot = getOurPlayer(gameState);
+    // var handQuality = getHandQuality(ourBot.hole_cards);
 
-    bet = ourBot.stack;
+    // bet = ourBot.stack;
 
     bet(bet);
   }
@@ -23,7 +23,7 @@ function getOurPlayer(gameState) {
   var players = gameState.players;
   var we = null;
 
-  players.forEach(players, function (player) {
+  players.forEach(function (player) {
     if (player.name == 'Contra') {
       we = player;
     }
