@@ -7,7 +7,7 @@ class Player {
     var currentBet = gameState.big_blind * 2;
     var ourBot = getOurPlayer(gameState);
     var handQuality = getHandQuality(ourBot.hole_cards);
-    console.log('HAND QUALITY: ',handQuality);
+    // console.log('HAND QUALITY: ' + handQuality);
     var playersInGame = getPlayersLength(gameState.players);
     if (handQuality > 61){
       currentBet = ourBot.stack;
