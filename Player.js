@@ -75,8 +75,7 @@ class Player {
       // return;
       // currentBet = 0;
       // bet(currentBet);
-    }
-    else {
+    } else {
       //POST FLOP bluff
       if (gameState.current_buy_in == gameState.big_blind) {
         bet(gameState.big_blind);
@@ -86,7 +85,14 @@ class Player {
         if (bet1 < (0.2 * ourBot.stack)) {
           bet(bet1);
           return;
+        } else {
+          // TODO: check it
+          bet(gameState.current_buy_in);
+          return;
         }
+      } else {
+        bet(0);
+        return;
       }
     }
 
