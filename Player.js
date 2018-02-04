@@ -9,24 +9,36 @@ class Player {
     var handQuality = getHandQuality(ourBot.hole_cards);
     console.log('HAND QUALITY: ',handQuality);
     var playersInGame = getPlayersLength(gameState.players);
-    if (handQuality > 61){
+    if (handQuality >= 61){
       currentBet = ourBot.stack;
       bet(currentBet);
       return;
     }
 
-    if (handQuality >= 48 && (calcM(gameState, ourBot) < 15)) {
+    if (handQuality > 48 && (calcM(gameState, ourBot) <= 9)){
       currentBet = ourBot.stack;
-    } else {
-      currentBet = 0;
+      bet(currentBet);
+      return;
+    }
+    if (handQuality > 41 && (calcM(gameState, ourBot) <= 5)){
+      currentBet = ourBot.stack;
+      bet(currentBet);
+      return;
     }
 
-    if (handQuality >= 45 && (calcM(gameState, ourBot) < 3)) {
+    if (handQuality > 35 && (calcM(gameState, ourBot) <= 2)){
       currentBet = ourBot.stack;
-    } else {
-      currentBet = 0;
+      bet(currentBet);
+      return;
     }
 
+    if ((calcM(gameState, ourBot) <= 2)){
+          currentBet = ourBot.stack;
+          bet(currentBet);
+          return;
+        }
+
+    currentBet = 0;
     bet(currentBet);
   }
 
