@@ -16,25 +16,10 @@ class Player {
     }
 
     var currentM = calcM(gameState, ourBot);
-
-
     console.log('!!!gameState:', gameState);
-    // If M is good
-    // if (currentM > 9) {
-    //   // No actions before us
-    //   if (gameState.current_buy_in == gameState.big_blind) {
-    //     bet(gameState.big_blind * 2);
-    //     return;
-    //   } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
-    //     var bet1 = gameState.current_buy_in + minimum_raise;
-    //     if (bet1 < (0.2 * ourBot.stack)) {
-    //       bet(bet1);
-    //       return;
-    //     }
-    //   }
-    // }
 
-
+    var isPostFlop = !!gameState.community_cards.length;
+    console.log('!!ISPOSTFLOP!!', isPostFlop);
     // If shitty M
     if (handQuality >= 48 && (currentM < 9)) {
       currentBet = ourBot.stack;
