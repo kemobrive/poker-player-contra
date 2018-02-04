@@ -12,7 +12,7 @@ class Player {
 
     currentBet = ourBot.stack;
 
-    bet(currentBet);
+    bet(0);
   }
 
   static calcM(gameState, player) {
