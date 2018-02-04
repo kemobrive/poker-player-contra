@@ -1,8 +1,8 @@
-const https = require('https');
-
 class Player {
   static get VERSION() {
+
     return '3.0.1';
+
   }
 
   static betRequest(gameState, bet) {
@@ -17,7 +17,7 @@ class Player {
 
 
     console.log('!!!gameState:', gameState);
-    getApi();
+    // getApi();
     // If M is good
     //Pre flop or post flop
     if (!gameState.community_cards.length ){
@@ -89,13 +89,16 @@ class Player {
   // Custom methods
 }
 
-function getApi() {
-  // if (!https) return;
-  //
-  // https.get('http://rainman.leanpoker.org/rank', (resp) => {
-  //   console.log('RESPONSE: ', resp);
-  // })
-}
+// function getApi() {
+//   if (!fetch) return;
+//
+//   // fetch('http://rainman.leanpoker.org/rank',{
+//   //   method: 'GET',
+//   //   body: {}
+//   // })
+//   //   .then(res => res.json())
+//   //   .then(json => console.log('!!!JSON:',json));
+// }
 
 function calcM(gameState, player) {
   var stack = parseInt(player.stack);
