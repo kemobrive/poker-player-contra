@@ -1,6 +1,6 @@
 class Player {
   static get VERSION() {
-    return '4.0.3';
+    return '4.0.4';
   }
 
   static betRequest(gameState, bet) {
@@ -20,30 +20,35 @@ class Player {
 
     var isPostFlop = !!gameState.community_cards.length;
     console.log('!!ISPOSTFLOP!!', isPostFlop);
-    // If shitty M
-    if (handQuality >= 48 && (currentM < 9)) {
-      currentBet = ourBot.stack;
-      bet(currentBet);
-      return;
-    }
-    if (handQuality > 41 && (currentM <= 5)){
-      currentBet = ourBot.stack;
-      bet(currentBet);
-      return;
-    }
 
-    if (handQuality > 35 && (currentM <= 2)){
-      currentBet = ourBot.stack;
-      bet(currentBet);
-      return;
-    }
+    if (!isPostFlop) {
+      // If shitty M
+      if (handQuality >= 48 && (currentM < 9)) {
+        currentBet = ourBot.stack;
+        bet(currentBet);
+        return;
+      }
+      if (handQuality > 41 && (currentM <= 5)){
+        currentBet = ourBot.stack;
+        bet(currentBet);
+        return;
+      }
 
-    if ((calcM(gameState, ourBot) <= 2)){
-      currentBet = ourBot.stack;
-      bet(currentBet);
-      return;
-    }
+      if (handQuality > 35 && (currentM <= 2)){
+        currentBet = ourBot.stack;
+        bet(currentBet);
+        return;
+      }
 
+      if ((calcM(gameState, ourBot) <= 2)){
+        currentBet = ourBot.stack;
+        bet(currentBet);
+        return;
+      }
+    } else {
+      // POST FLOP
+
+    }
 
     currentBet = 0;
     bet(currentBet);
