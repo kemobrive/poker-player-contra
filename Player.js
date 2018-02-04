@@ -1,6 +1,6 @@
 class Player {
   static get VERSION() {
-    return '0.1.5.1';
+    return '0.1.6.1';
   }
 
   static betRequest(gameState, bet) {
@@ -15,30 +15,44 @@ class Player {
       return;
     }
 
+    var currentM = calcM(gameState, ourBot);
+
+
     console.log('!!!gameState:', gameState);
+    // If M is good
+    if (currentM > 9) {
+      // No actions before us
+      if (gameState.current_buy_in == gameState.big_blind) {
+        bet(gameState.big_blind * 2);
+        return;
+      }
+    }
 
-    if (handQuality >= 48 && (calcM(gameState, ourBot) < 9)) {
+
+    // If shitty M
+    if (handQuality >= 48 && (currentM < 9)) {
       currentBet = ourBot.stack;
       bet(currentBet);
       return;
     }
-    if (handQuality > 41 && (calcM(gameState, ourBot) <= 5)){
+    if (handQuality > 41 && (currentM <= 5)){
       currentBet = ourBot.stack;
       bet(currentBet);
       return;
     }
 
-    if (handQuality > 35 && (calcM(gameState, ourBot) <= 2)){
+    if (handQuality > 35 && (currentM <= 2)){
       currentBet = ourBot.stack;
       bet(currentBet);
       return;
     }
 
     if ((calcM(gameState, ourBot) <= 2)){
-          currentBet = ourBot.stack;
-          bet(currentBet);
-          return;
-        }
+      currentBet = ourBot.stack;
+      bet(currentBet);
+      return;
+    }
+
 
     currentBet = 0;
     bet(currentBet);
