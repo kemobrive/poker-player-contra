@@ -73,11 +73,11 @@ class Player {
 }
 
 function getApi() {
-  if (!https) return;
-
-  https.get('http://rainman.leanpoker.org/rank', (resp) => {
-    console.log('RESPONSE: ', resp);
-  })
+  // if (!https) return;
+  //
+  // https.get('http://rainman.leanpoker.org/rank', (resp) => {
+  //   console.log('RESPONSE: ', resp);
+  // })
 }
 
 function calcM(gameState, player) {
