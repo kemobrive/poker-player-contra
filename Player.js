@@ -39,7 +39,7 @@ class Player {
   // Custom methods
 }
 
-function () {
+function getSmth() {
 
 }
 
