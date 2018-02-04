@@ -4,10 +4,24 @@ class Player {
   }
 
   static betRequest(gameState, bet) {
+    console.log(gameState);
+
     bet(0);
   }
 
   static showdown(gameState) {
+  }
+  // Custom methods
+
+  /**
+   *
+   */
+  static getHandQuality(hand) {
+    var quality = 0;
+
+    // method body
+
+    return quality;
   }
 }
 
