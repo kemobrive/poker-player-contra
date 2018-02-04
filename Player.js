@@ -91,8 +91,8 @@ class Player {
 }
 
 function getApi() {
-  if (!http) return;
-  console.log('HTTP: ',http);
+  // if (!http) return;
+  // console.log('HTTP: ',http);
 //   if (!fetch) return;
 //
 //   // fetch('http://rainman.leanpoker.org/rank',{
