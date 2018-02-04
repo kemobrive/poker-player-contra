@@ -2,7 +2,7 @@ const https = require('https');
 
 class Player {
   static get VERSION() {
-    return '2.0.1';
+    return '3.0.1';
   }
 
   static betRequest(gameState, bet) {
@@ -11,11 +11,7 @@ class Player {
     var handQuality = getHandQuality(ourBot.hole_cards);
     // console.log('HAND QUALITY: ' + handQuality);
     var playersInGame = getPlayersLength(gameState.players);
-    if (handQuality >= 61){
-      currentBet = ourBot.stack;
-      bet(currentBet);
-      return;
-    }
+
 
     var currentM = calcM(gameState, ourBot);
 
@@ -23,20 +19,26 @@ class Player {
     console.log('!!!gameState:', gameState);
     getApi();
     // If M is good
-    // if (currentM > 9) {
-    //   // No actions before us
-    //   if (gameState.current_buy_in == gameState.big_blind) {
-    //     bet(gameState.big_blind * 2);
-    //     return;
-    //   } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
-    //     var bet1 = gameState.current_buy_in + minimum_raise;
-    //     if (bet1 < (0.2 * ourBot.stack)) {
-    //       bet(bet1);
-    //       return;
-    //     }
-    //   }
-    // }
-
+    //Pre flop or post flop
+    if (!gameState.community_cards.length ){
+     if (currentM > 9) {
+       // No actions before us
+       if (gameState.current_buy_in == gameState.big_blind) {
+         bet(gameState.big_blind * 2);
+         return;
+       } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
+         var bet1 = gameState.current_buy_in + minimum_raise;
+         if (bet1 < (0.2 * ourBot.stack)) {
+           bet(bet1);
+           return;
+         }
+       }
+     }
+     if (handQuality >= 61){
+           currentBet = ourBot.stack;
+           bet(currentBet);
+           return;
+         }
 
     // If shitty M
     if (handQuality >= 48 && (currentM < 9)) {
@@ -65,6 +67,21 @@ class Player {
 
     currentBet = 0;
     bet(currentBet);
+    }
+    else {
+    //POST FLOP bluff
+    if (gameState.current_buy_in == gameState.big_blind) {
+             bet(gameState.big_blind);
+             return;
+           } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
+             var bet1 = gameState.current_buy_in + minimum_raise;
+             if (bet1 < (0.2 * ourBot.stack)) {
+               bet(bet1);
+               return;
+             }
+           }
+
+    }
   }
 
   static showdown(gameState) {
