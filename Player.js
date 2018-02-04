@@ -67,11 +67,27 @@ function getHandQuality(hand) {
   var lastHand = getCardQuality(hand[1]);
   var maxCard = (firstHand > lastHand) ? 0 : 1;
 
+  if (maxCard == 0) {
+    firstHand = firstHand *2;
+  } else {
+    lastHand = lastHand *2;
+  }
+
   quality = firstHand + lastHand;
 
-  if (quality > 24) {
-    return 100;
+  // IF PAIR
+  if (hand[0]['rank'] == hand[1]['rank']) {
+    quality = quality + 22;
   }
+
+  if (hand[0]['suit'] == hand[1]['suit']) {
+    quality = quality + 2;
+  }
+
+  // TODO: REMOVE
+  // if (quality > 24) {
+  //   return 100;
+  // }
 
   return quality;
 }
