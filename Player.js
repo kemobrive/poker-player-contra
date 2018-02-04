@@ -66,8 +66,8 @@ class Player {
       }
 
 
-      currentBet = 0;
-      bet(currentBet);
+      // currentBet = 0;
+      // bet(currentBet);
     // } else {
     //   //POST FLOP bluff
     //   if (gameState.current_buy_in == gameState.big_blind) {
