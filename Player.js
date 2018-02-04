@@ -1,8 +1,6 @@
 class Player {
   static get VERSION() {
-
-    return '3.3.';
-
+    return '2.0.1ROLLBACK';
   }
 
   static betRequest(gameState, bet) {
@@ -11,90 +9,56 @@ class Player {
     var handQuality = getHandQuality(ourBot.hole_cards);
     // console.log('HAND QUALITY: ' + handQuality);
     var playersInGame = getPlayersLength(gameState.players);
-
+    if (handQuality >= 61){
+      currentBet = ourBot.stack;
+      bet(currentBet);
+      return;
+    }
 
     var currentM = calcM(gameState, ourBot);
 
 
     console.log('!!!gameState:', gameState);
-    // getApi();
     // If M is good
-    //Pre flop or post flop
-    console.log('community_cards!QASEQ', gameState.community_cards);
-    if (gameState.community_cards.length == 0) {
-      if (currentM > 9) {
-        // No actions before us
-        if (gameState.current_buy_in == gameState.big_blind) {
-          bet(gameState.big_blind * 2);
-          return;
-        } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
-          var bet1 = gameState.current_buy_in + minimum_raise;
-          if (bet1 < (0.2 * ourBot.stack)) {
-            bet(bet1);
-            return;
-          } else {
-            bet(0);
-            return;
-          }
-        } else {
-          bet(0);
-          return;
-        }
-      }
-      if (handQuality >= 61){
-        currentBet = ourBot.stack;
-        bet(currentBet);
-        return;
-      }
+    // if (currentM > 9) {
+    //   // No actions before us
+    //   if (gameState.current_buy_in == gameState.big_blind) {
+    //     bet(gameState.big_blind * 2);
+    //     return;
+    //   } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
+    //     var bet1 = gameState.current_buy_in + minimum_raise;
+    //     if (bet1 < (0.2 * ourBot.stack)) {
+    //       bet(bet1);
+    //       return;
+    //     }
+    //   }
+    // }
 
-      // If shitty M
-      if (handQuality >= 48 && (currentM < 9)) {
-        currentBet = ourBot.stack;
-        bet(currentBet);
-        return;
-      }
-      if (handQuality > 41 && (currentM <= 5)){
-        currentBet = ourBot.stack;
-        bet(currentBet);
-        return;
-      }
 
-      if (handQuality > 35 && (currentM <= 2)){
-        currentBet = ourBot.stack;
-        bet(currentBet);
-        return;
-      }
-
-      if ((calcM(gameState, ourBot) <= 2)){
-        currentBet = ourBot.stack;
-        bet(currentBet);
-        return;
-      }
-      //
-      // bet(0);
-      // return;
-      // currentBet = 0;
-      // bet(currentBet);
-    } else {
-      //POST FLOP bluff
-      if (gameState.current_buy_in == gameState.big_blind) {
-        bet(gameState.big_blind);
-        return;
-      } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
-        var bet1 = gameState.current_buy_in + minimum_raise;
-        if (bet1 < (0.2 * ourBot.stack)) {
-          bet(bet1);
-          return;
-        } else {
-          // TODO: check it
-          bet(gameState.current_buy_in);
-          return;
-        }
-      } else {
-        bet(0);
-        return;
-      }
+    // If shitty M
+    if (handQuality >= 48 && (currentM < 9)) {
+      currentBet = ourBot.stack;
+      bet(currentBet);
+      return;
     }
+    if (handQuality > 41 && (currentM <= 5)){
+      currentBet = ourBot.stack;
+      bet(currentBet);
+      return;
+    }
+
+    if (handQuality > 35 && (currentM <= 2)){
+      currentBet = ourBot.stack;
+      bet(currentBet);
+      return;
+    }
+
+    if ((calcM(gameState, ourBot) <= 2)){
+      currentBet = ourBot.stack;
+      bet(currentBet);
+      return;
+    }
+
 
     currentBet = 0;
     bet(currentBet);
@@ -105,17 +69,8 @@ class Player {
   // Custom methods
 }
 
-function getApi() {
-  // if (!http) return;
-  // console.log('HTTP: ',http);
-  //   if (!fetch) return;
-  //
-  //   // fetch('http://rainman.leanpoker.org/rank',{
-  //   //   method: 'GET',
-  //   //   body: {}
-  //   // })
-  //   //   .then(res => res.json())
-  //   //   .then(json => console.log('!!!JSON:',json));
+function getPreviousActions(gameState) {
+
 }
 
 function calcM(gameState, player) {
