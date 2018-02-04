@@ -1,4 +1,6 @@
 class Player {
+
+
   static get VERSION() {
     return '0.1';
   }
@@ -11,6 +13,12 @@ class Player {
     // bet = ourBot.stack;
 
     bet(bet);
+  }
+
+  static calcM(gameState, player) {
+    var stack = player.stack;
+
+    return stack / (1.5 * gameState.big_blind);
   }
 
   static showdown(gameState) {
