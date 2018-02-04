@@ -16,31 +16,28 @@ class Player {
   static showdown(gameState) {
   }
   // Custom methods
+}
 
-  /**
-   *
-   */
 
-  static getOurPlayer(gameState) {
-    var players = gameState.players;
-    var we = null;
+function getOurPlayer(gameState) {
+  var players = gameState.players;
+  var we = null;
 
-    players.forEach(players, function (player) {
-      if (player.name == 'Contra') {
-        we = player;
-      }
-    });
+  players.forEach(players, function (player) {
+    if (player.name == 'Contra') {
+      we = player;
+    }
+  });
 
-    return we;
-  }
+  return we;
+}
 
-  static getHandQuality(hand) {
-    var quality = 0;
-    console.log('MY HANJD!!!!!!!!',hand);
-    // method body
+function getHandQuality(hand) {
+  var quality = 0;
+  console.log('MY HANJD!!!!!!!!',hand);
+  // method body
 
-    return quality;
-  }
+  return quality;
 }
 
 module.exports = Player;
