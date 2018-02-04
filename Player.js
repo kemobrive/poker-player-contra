@@ -7,10 +7,10 @@ class Player {
 
   static betRequest(gameState, bet) {
     var bet = gameState.big_blind * 2;
-    // var ourBot = getOurPlayer(gameState);
-    // var handQuality = getHandQuality(ourBot.hole_cards);
+    var ourBot = getOurPlayer(gameState);
+    var handQuality = getHandQuality(ourBot.hole_cards);
 
-    // bet = ourBot.stack;
+    bet = ourBot.stack;
 
     bet(bet);
   }
