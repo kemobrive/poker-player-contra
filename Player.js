@@ -1,6 +1,8 @@
 class Player {
   static get VERSION() {
-    return '2.0.3';
+
+    return '3.0.1';
+
   }
 
   static betRequest(gameState, bet) {
@@ -9,11 +11,7 @@ class Player {
     var handQuality = getHandQuality(ourBot.hole_cards);
     // console.log('HAND QUALITY: ' + handQuality);
     var playersInGame = getPlayersLength(gameState.players);
-    if (handQuality >= 61){
-      currentBet = ourBot.stack;
-      bet(currentBet);
-      return;
-    }
+
 
     var currentM = calcM(gameState, ourBot);
 
@@ -21,48 +19,69 @@ class Player {
     console.log('!!!gameState:', gameState);
     getApi();
     // If M is good
-    // if (currentM > 9) {
-    //   // No actions before us
-    //   if (gameState.current_buy_in == gameState.big_blind) {
-    //     bet(gameState.big_blind * 2);
-    //     return;
-    //   } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
-    //     var bet1 = gameState.current_buy_in + minimum_raise;
-    //     if (bet1 < (0.2 * ourBot.stack)) {
-    //       bet(bet1);
-    //       return;
-    //     }
-    //   }
-    // }
+    //Pre flop or post flop
+    if (gameState.community_cards.length == 0) {
+      if (currentM > 9) {
+        // No actions before us
+        if (gameState.current_buy_in == gameState.big_blind) {
+          bet(gameState.big_blind * 2);
+          return;
+        } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
+          var bet1 = gameState.current_buy_in + minimum_raise;
+          if (bet1 < (0.2 * ourBot.stack)) {
+            bet(bet1);
+            return;
+          }
+        }
+      }
+      if (handQuality >= 61){
+        currentBet = ourBot.stack;
+        bet(currentBet);
+        return;
+      }
+
+      // If shitty M
+      if (handQuality >= 48 && (currentM < 9)) {
+        currentBet = ourBot.stack;
+        bet(currentBet);
+        return;
+      }
+      if (handQuality > 41 && (currentM <= 5)){
+        currentBet = ourBot.stack;
+        bet(currentBet);
+        return;
+      }
+
+      if (handQuality > 35 && (currentM <= 2)){
+        currentBet = ourBot.stack;
+        bet(currentBet);
+        return;
+      }
+
+      if ((calcM(gameState, ourBot) <= 2)){
+        currentBet = ourBot.stack;
+        bet(currentBet);
+        return;
+      }
 
 
-    // If shitty M
-    if (handQuality >= 48 && (currentM < 9)) {
-      currentBet = ourBot.stack;
+      currentBet = 0;
       bet(currentBet);
-      return;
-    }
-    if (handQuality > 41 && (currentM <= 5)){
-      currentBet = ourBot.stack;
-      bet(currentBet);
-      return;
-    }
-
-    if (handQuality > 35 && (currentM <= 2)){
-      currentBet = ourBot.stack;
-      bet(currentBet);
-      return;
-    }
-
-    if ((calcM(gameState, ourBot) <= 2)){
-      currentBet = ourBot.stack;
-      bet(currentBet);
-      return;
+    } else {
+      //POST FLOP bluff
+      if (gameState.current_buy_in == gameState.big_blind) {
+        bet(gameState.big_blind);
+        return;
+      } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
+        var bet1 = gameState.current_buy_in + minimum_raise;
+        if (bet1 < (0.2 * ourBot.stack)) {
+          bet(bet1);
+          return;
+        }
+      }
     }
 
-
-    currentBet = 0;
-    bet(currentBet);
+    bet(0);
   }
 
   static showdown(gameState) {
