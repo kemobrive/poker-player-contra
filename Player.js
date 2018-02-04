@@ -20,7 +20,8 @@ class Player {
     // getApi();
     // If M is good
     //Pre flop or post flop
-    if (gameState.community_cards.length == 0) {
+    console.log('community_cards!QASEQ', gameState.community_cards);
+    // if (gameState.community_cards.length == 0) {
       if (currentM > 9) {
         // No actions before us
         if (gameState.current_buy_in == gameState.big_blind) {
@@ -67,19 +68,19 @@ class Player {
 
       currentBet = 0;
       bet(currentBet);
-    } else {
-      //POST FLOP bluff
-      if (gameState.current_buy_in == gameState.big_blind) {
-        bet(gameState.big_blind);
-        return;
-      } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
-        var bet1 = gameState.current_buy_in + minimum_raise;
-        if (bet1 < (0.2 * ourBot.stack)) {
-          bet(bet1);
-          return;
-        }
-      }
-    }
+    // } else {
+    //   //POST FLOP bluff
+    //   if (gameState.current_buy_in == gameState.big_blind) {
+    //     bet(gameState.big_blind);
+    //     return;
+    //   } else if (gameState.current_buy_in < (gameState.big_blind * 4)) {
+    //     var bet1 = gameState.current_buy_in + minimum_raise;
+    //     if (bet1 < (0.2 * ourBot.stack)) {
+    //       bet(bet1);
+    //       return;
+    //     }
+    //   }
+    // }
 
     currentBet = 0;
     bet(currentBet);
@@ -93,14 +94,14 @@ class Player {
 function getApi() {
   // if (!http) return;
   // console.log('HTTP: ',http);
-//   if (!fetch) return;
-//
-//   // fetch('http://rainman.leanpoker.org/rank',{
-//   //   method: 'GET',
-//   //   body: {}
-//   // })
-//   //   .then(res => res.json())
-//   //   .then(json => console.log('!!!JSON:',json));
+  //   if (!fetch) return;
+  //
+  //   // fetch('http://rainman.leanpoker.org/rank',{
+  //   //   method: 'GET',
+  //   //   body: {}
+  //   // })
+  //   //   .then(res => res.json())
+  //   //   .then(json => console.log('!!!JSON:',json));
 }
 
 function calcM(gameState, player) {
