@@ -11,7 +11,7 @@ class Player {
     var handQuality = getHandQuality(ourBot.hole_cards);
     console.log(handQuality);
     var playersInGame = getPlayersLength(gameState.players);
-    if (handQuality == 100){
+    if (handQuality > 57){
       currentBet = ourBot.stack;
       bet(currentBet);
       return;
