@@ -15,13 +15,13 @@ class Player {
       return;
     }
 
-    if (handQuality >= 48 && calcM(gameState, ourBot) < 15) {
+    if (handQuality >= 48 && (calcM(gameState, ourBot) < 15)) {
       currentBet = ourBot.stack;
     } else {
       currentBet = 0;
     }
 
-    if (handQuality >= 45 && calcM(gameState, ourBot) < 3) {
+    if (handQuality >= 45 && (calcM(gameState, ourBot) < 3)) {
       currentBet = ourBot.stack;
     } else {
       currentBet = 0;
