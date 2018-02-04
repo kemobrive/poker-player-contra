@@ -1,7 +1,7 @@
 class Player {
   static get VERSION() {
 
-    return '3.0.2';
+    return '3.2';
 
   }
 
@@ -81,7 +81,8 @@ class Player {
       }
     }
 
-    bet(0);
+    currentBet = 0;
+    bet(currentBet);
   }
 
   static showdown(gameState) {
