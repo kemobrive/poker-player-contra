@@ -1,8 +1,6 @@
 class Player {
-
-
   static get VERSION() {
-    return '0.1.5';
+    return '0.1.5.1';
   }
 
   static betRequest(gameState, bet) {
@@ -16,8 +14,6 @@ class Player {
       bet(currentBet);
       return;
     }
-
-
 
     if (handQuality >= 48 && calcM(gameState, ourBot) < 15) {
       currentBet = ourBot.stack;
@@ -44,9 +40,9 @@ function getSmth() {
 }
 
 function calcM(gameState, player) {
-  var stack = player.stack;
+  var stack = parseInt(player.stack);
 
-  return stack / (1.5 * gameState.big_blind);
+  return stack / (1.5 * parseInt(gameState.big_blind));
 }
 
 
@@ -59,7 +55,6 @@ function getPlayersLength(players) {
   });
 
   return len;
-
 }
 
 
