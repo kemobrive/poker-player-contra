@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 class Player {
   static get VERSION() {
     return '2.0.2';
@@ -75,12 +73,12 @@ class Player {
 function getApi() {
   if (!fetch) return;
 
-  fetch('http://rainman.leanpoker.org/rank',{
-    method: 'GET',
-    body: {}
-  })
-    .then(res => res.json())
-    .then(json => console.log('!!!JSON:',json));
+  // fetch('http://rainman.leanpoker.org/rank',{
+  //   method: 'GET',
+  //   body: {}
+  // })
+  //   .then(res => res.json())
+  //   .then(json => console.log('!!!JSON:',json));
 }
 
 function calcM(gameState, player) {
